@@ -1,4 +1,5 @@
 import CardList from '../card-list/card-list';
+import Pagination from '../pagination/pagination';
 import { mockCameras } from '../../mock/cameras';
 
 function Catalog() {
@@ -124,18 +125,7 @@ function Catalog() {
             <div className="cards catalog__cards">
               <CardList cameras={mockCameras}/>
             </div>
-            <div className="pagination">
-              <ul className="pagination__list">
-                <li className="pagination__item"><a className="pagination__link pagination__link--active" href="1">1</a>
-                </li>
-                <li className="pagination__item"><a className="pagination__link" href="2">2</a>
-                </li>
-                <li className="pagination__item"><a className="pagination__link" href="3">3</a>
-                </li>
-                <li className="pagination__item"><a className="pagination__link pagination__link--text" href="2">Далее</a>
-                </li>
-              </ul>
-            </div>
+            <Pagination />
           </div>
         </div>
       </div>

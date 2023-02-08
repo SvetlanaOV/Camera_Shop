@@ -1,4 +1,6 @@
-export const mockCameras = [
+import { Camera } from '../types/camera';
+
+export const mockCameras: Camera[] = [
   {
     id: 1,
     name: 'Ретрокамера Dus Auge lV',
