@@ -1,8 +1,11 @@
+import {useAppSelector} from '../../hooks/useAppSelector';
 import CardList from '../card-list/card-list';
 import Pagination from '../pagination/pagination';
-import { mockCameras } from '../../mock/cameras';
+import {getCameras} from '../../store/data-process/selectors';
 
-function Catalog() {
+function Catalog(): JSX.Element{
+  const cameras = useAppSelector(getCameras);
+
   return(
     <section className="catalog">
       <div className="container">
@@ -123,7 +126,7 @@ function Catalog() {
               </form>
             </div>
             <div className="cards catalog__cards">
-              <CardList cameras={mockCameras}/>
+              <CardList cameras={cameras}/>
             </div>
             <Pagination />
           </div>

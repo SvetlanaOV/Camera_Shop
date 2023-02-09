@@ -7,3 +7,7 @@ export enum AppRoute {
 export enum APIRoute {
   Cameras = '/cameras'
 }
+
+export enum NameSpace {
+  Data = 'Data'
+}
