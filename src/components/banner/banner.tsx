@@ -1,8 +1,8 @@
-import { Link } from 'react-router-dom';
-import { APIRoute } from '../../const';
+import {Link} from 'react-router-dom';
+import {APIRoute} from '../../const';
 import { mockPromo } from '../../mock/promo';
 
-function Banner() {
+function Banner(): JSX.Element {
   const {id, previewImg, previewImg2x, previewImgWebp, previewImgWebp2x, name} = mockPromo;
 
   return(

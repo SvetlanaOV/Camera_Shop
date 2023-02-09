@@ -1,4 +1,4 @@
-function Pagination() {
+function Pagination(): JSX.Element {
   return(
     <div className="pagination">
       <ul className="pagination__list">

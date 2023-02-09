@@ -1,4 +1,4 @@
-function Breadcrumbs() {
+function Breadcrumbs(): JSX.Element {
   return(
     <div className="breadcrumbs">
       <div className="container">
