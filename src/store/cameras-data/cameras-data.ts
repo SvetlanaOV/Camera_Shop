@@ -1,14 +1,14 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {NameSpace} from '../../const';
-import {CamerasDataProcess} from '../../types/state';
+import {CamerasData} from '../../types/state';
 import {fetchCamerasAction} from '../api-actions';
 
-const initialState: CamerasDataProcess = {
+const initialState: CamerasData = {
   cameras: [],
   isDataLoading: false,
 };
 
-export const camerasDataProcess = createSlice({
+export const camerasData = createSlice({
   name: NameSpace.CamerasData,
   initialState,
   reducers: {},

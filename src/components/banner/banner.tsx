@@ -1,9 +1,11 @@
 import {Link} from 'react-router-dom';
+import {useAppSelector} from '../../hooks/useAppSelector';
 import {APIRoute} from '../../const';
-import { mockPromo } from '../../mock/promo';
+import {getPromo} from '../../store/promo-data/selectors';
 
 function Banner(): JSX.Element {
-  const {id, previewImg, previewImg2x, previewImgWebp, previewImgWebp2x, name} = mockPromo;
+  const promo = useAppSelector(getPromo);
+  const {id, previewImg, previewImg2x, previewImgWebp, previewImgWebp2x, name} = promo;
 
   return(
     <div className="banner">

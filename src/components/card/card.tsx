@@ -1,6 +1,7 @@
-import { Link } from 'react-router-dom';
-import { APIRoute } from '../../const';
+import {Link} from 'react-router-dom';
+import {APIRoute} from '../../const';
 import {Camera} from '../../types/camera';
+import {MAX_RATING} from '../../const';
 
 type CardProps = {
   camera: Camera;
@@ -18,21 +19,11 @@ function Card({camera}: CardProps) {
       </div>
       <div className="product-card__info">
         <div className="rate product-card__rate">
-          <svg width="17" height="16" aria-hidden="true">
-            <use xlinkHref="!#icon-full-star"></use>
-          </svg>
-          <svg width="17" height="16" aria-hidden="true">
-            <use xlinkHref="!#icon-full-star"></use>
-          </svg>
-          <svg width="17" height="16" aria-hidden="true">
-            <use xlinkHref="!#icon-full-star"></use>
-          </svg>
-          <svg width="17" height="16" aria-hidden="true">
-            <use xlinkHref="!#icon-star"></use>
-          </svg>
-          <svg width="17" height="16" aria-hidden="true">
-            <use xlinkHref="!#icon-star"></use>
-          </svg>
+          {Array.from({length: MAX_RATING}, (_, index) => (
+            <svg width="17" height="16" aria-hidden="true" key={index}>
+              <use xlinkHref={`#icon-${index < rating ? 'full-' : ''}star`}></use>
+            </svg>
+          ))}
           <p className="visually-hidden">Рейтинг: {rating}</p>
           <p className="rate__count"><span className="visually-hidden">Всего оценок:</span>{reviewCount}</p>
         </div>
