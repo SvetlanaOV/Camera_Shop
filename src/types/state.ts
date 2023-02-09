@@ -1,7 +1,7 @@
 import {store} from '../store/index';
-import { Camera } from './camera';
+import {Camera} from './camera';
 
-export type DataProcess = {
+export type CamerasDataProcess = {
   cameras: Camera[];
   isDataLoading: boolean;
 };

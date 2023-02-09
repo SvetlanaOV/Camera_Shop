@@ -1,15 +1,15 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {NameSpace} from '../../const';
-import {DataProcess} from '../../types/state';
+import {CamerasDataProcess} from '../../types/state';
 import {fetchCamerasAction} from '../api-actions';
 
-const initialState: DataProcess = {
+const initialState: CamerasDataProcess = {
   cameras: [],
   isDataLoading: false,
 };
 
-export const dataProcess = createSlice({
-  name: NameSpace.Data,
+export const camerasDataProcess = createSlice({
+  name: NameSpace.CamerasData,
   initialState,
   reducers: {},
   extraReducers(builder) {
