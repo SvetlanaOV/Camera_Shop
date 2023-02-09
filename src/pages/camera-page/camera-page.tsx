@@ -1,4 +1,3 @@
-import Banner from '../../components/banner/banner';
 import Breadcrumbs from '../../components/breadcrumbs/breadcrumbs';
 import ReviewList from '../../components/review-list/review-list';
 import Header from '../../components/header/header';
@@ -10,7 +9,6 @@ function CameraPage(): JSX.Element {
     <div className="wrapper">
       <Header />
       <main>
-        <Banner />
         <div className="page-content">
           <Breadcrumbs />
           <div className="page-content__section">

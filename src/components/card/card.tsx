@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+import { APIRoute } from '../../const';
 import {Camera} from '../../types/camera';
 
 type CardProps = {
@@ -39,7 +41,7 @@ function Card({camera}: CardProps) {
       </div>
       <div className="product-card__buttons">
         <button className="btn btn--purple product-card__btn" type="button">Купить</button>
-        <a className="btn btn--transparent" href="!#">Подробнее</a>
+        <Link className="btn btn--transparent" to={`${APIRoute.Cameras}/${id}`}>Подробнее</Link>
       </div>
     </div>
   );
