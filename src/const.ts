@@ -7,6 +7,7 @@ export enum AppRoute {
 export enum APIRoute {
   Cameras = '/cameras',
   Promo = '/promo',
+  Catalog = '/catalog',
 }
 
 export enum NameSpace {
@@ -15,3 +16,7 @@ export enum NameSpace {
 }
 
 export const MAX_RATING = 5;
+
+export const MAX_CARDS_ON_PAGE = 9;
+
+export const DEFAULT_PAGE = 1;
