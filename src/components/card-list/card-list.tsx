@@ -1,6 +1,6 @@
 import {Fragment} from 'react';
 import Card from '../card/card';
-import { Camera } from '../../types/camera';
+import {Camera} from '../../types/camera';
 
 type CardListProps = {
   cameras: Camera[];
