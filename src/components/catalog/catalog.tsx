@@ -1,12 +1,19 @@
+import {useParams} from 'react-router-dom';
 import {useAppSelector} from '../../hooks/useAppSelector';
 import CardList from '../card-list/card-list';
 import Pagination from '../pagination/pagination';
 import FilterForm from '../filter-form/filter-form';
 import SortForm from '../sort-form/sort-form';
 import {getCameras} from '../../store/cameras-data/selectors';
+import { PAGE_COUNT_STEP, MAX_CARDS_ON_PAGE } from '../../const';
 
 function Catalog(): JSX.Element{
   const cameras = useAppSelector(getCameras);
+
+  const {pageId} = useParams();
+
+  const firstCardIndex = MAX_CARDS_ON_PAGE * (Number(pageId) - PAGE_COUNT_STEP);
+  const camerasOnPage = cameras.slice(firstCardIndex, (firstCardIndex + MAX_CARDS_ON_PAGE));
 
   return(
     <section className="catalog">
@@ -23,7 +30,7 @@ function Catalog(): JSX.Element{
               <SortForm />
             </div>
             <div className="cards catalog__cards">
-              <CardList cameras={cameras}/>
+              <CardList cameras={camerasOnPage}/>
             </div>
             <Pagination />
           </div>
