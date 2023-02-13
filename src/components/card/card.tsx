@@ -13,8 +13,8 @@ function Card({camera}: CardProps) {
     <div key={id} className="product-card">
       <div className="product-card__img">
         <picture>
-          <source type="image/webp" srcSet={`${previewImgWebp}, ${previewImgWebp2x} 2x`} />
-          <img src={previewImg} srcSet={`${previewImg2x} 2x`} width="280" height="240" alt={name} />
+          <source type="image/webp" srcSet={`/${previewImgWebp}, /${previewImgWebp2x} 2x`} />
+          <img src={previewImg} srcSet={`/${previewImg2x} 2x`} width="280" height="240" alt={name} />
         </picture>
       </div>
       <div className="product-card__info">

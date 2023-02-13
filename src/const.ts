@@ -1,19 +1,17 @@
 export enum AppRoute {
   Root = '/',
-  Catalog = '/catalog/:pageId',
-  Camera = '/cameras/:id',
+  Catalog = '/catalog',
+  Camera = '/cameras',
 }
 
 export enum APIRoute {
   Cameras = '/cameras',
   Promo = '/promo',
-  Catalog = '/catalog',
 }
 
 export enum NameSpace {
   CamerasData = 'CamerasData',
   PromoData = 'PromoData',
-  App = 'App',
 }
 
 export const MAX_RATING = 5;
