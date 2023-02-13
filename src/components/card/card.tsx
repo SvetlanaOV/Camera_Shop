@@ -1,3 +1,4 @@
+import { Fragment } from 'react';
 import {Link} from 'react-router-dom';
 import {APIRoute} from '../../const';
 import {Camera} from '../../types/camera';
@@ -10,11 +11,11 @@ type CardProps = {
 function Card({camera}: CardProps) {
   const {id, previewImg, previewImg2x, previewImgWebp, previewImgWebp2x, name, rating, reviewCount, price, category} = camera;
   return(
-    <div key={id} className="product-card">
+    <Fragment key={id}>
       <div className="product-card__img">
         <picture>
           <source type="image/webp" srcSet={`/${previewImgWebp}, /${previewImgWebp2x} 2x`} />
-          <img src={previewImg} srcSet={`/${previewImg2x} 2x`} width="280" height="240" alt={name} />
+          <img src={previewImg} srcSet={`/${previewImg2x} 2x`} width="280" height="240" alt={`${category} ${name}`} />
         </picture>
       </div>
       <div className="product-card__info">
@@ -34,7 +35,7 @@ function Card({camera}: CardProps) {
         <button className="btn btn--purple product-card__btn" type="button">Купить</button>
         <Link className="btn btn--transparent" to={`${APIRoute.Cameras}/${id}`}>Подробнее</Link>
       </div>
-    </div>
+    </Fragment>
   );
 }
 

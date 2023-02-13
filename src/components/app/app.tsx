@@ -18,7 +18,7 @@ function App(): JSX.Element {
           element={<MainPage />}
         />
         <Route
-          path={`${AppRoute.Camera}:id`}
+          path={`${AppRoute.Camera}/:id`}
           element={<CameraPage />}
         />
       </Routes>

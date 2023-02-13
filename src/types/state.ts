@@ -4,6 +4,7 @@ import {Promo} from './promo';
 
 export type CamerasData = {
   cameras: Camera[];
+  currentCamera: Camera;
   isDataLoading: boolean;
 };
 

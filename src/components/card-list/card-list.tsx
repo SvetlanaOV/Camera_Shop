@@ -10,10 +10,12 @@ function CardList ({cameras}: CardListProps): JSX.Element {
   return (
     <Fragment>
       {cameras.map((camera) => (
-        <Card
-          key={camera.id}
-          camera={camera}
-        />
+        <div key={camera.id} className="product-card">
+          <Card
+            key={camera.id}
+            camera={camera}
+          />
+        </div>
       ))}
     </Fragment>
   );
