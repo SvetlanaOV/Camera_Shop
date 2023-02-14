@@ -1,10 +1,10 @@
-import {useEffect} from 'react';
+import {useEffect, useState} from 'react';
 import {useParams} from 'react-router-dom';
 import {useAppSelector} from '../../hooks/useAppSelector';
 import {useAppDispatch} from '../../hooks/useAppDispatch';
 import {getCurrentCamera} from '../../store/cameras-data/selectors';
-import { fetchCurrentCameraAction } from '../../store/api-actions';
-import { MAX_RATING } from '../../const';
+import {fetchCurrentCameraAction} from '../../store/api-actions';
+import {MAX_RATING, TabName} from '../../const';
 
 function CameraProduct(): JSX.Element {
   const {id} = useParams();
@@ -19,6 +19,8 @@ function CameraProduct(): JSX.Element {
   }, [id, dispatch]);
 
   const {previewImg, previewImg2x, previewImgWebp, previewImgWebp2x, name, type, rating, reviewCount, price, vendorCode, category, level, description} = currentCamera;
+
+  const [activeTab, setActiveTab] = useState(TabName.Features);
 
   return(
     <section className="product">
@@ -48,11 +50,11 @@ function CameraProduct(): JSX.Element {
           </button>
           <div className="tabs product__tabs">
             <div className="tabs__controls product__tabs-controls">
-              <button className="tabs__control" type="button">Характеристики</button>
-              <button className="tabs__control is-active" type="button">Описание</button>
+              <button className={`tabs__control ${activeTab === TabName.Features ? 'is-active' : ''}`} onClick={() => setActiveTab(TabName.Features)} type="button">Характеристики</button>
+              <button className={`tabs__control ${activeTab === TabName.Description ? 'is-active' : ''}`} onClick={() => setActiveTab(TabName.Description)} type="button">Описание</button>
             </div>
             <div className="tabs__content">
-              <div className="tabs__element">
+              <div className={`tabs__element ${activeTab === TabName.Features ? 'is-active' : ''}`}>
                 <ul className="product__tabs-list">
                   <li className="item-list"><span className="item-list__title">Артикул:</span>
                     <p className="item-list__text">{vendorCode}</p>
@@ -68,7 +70,7 @@ function CameraProduct(): JSX.Element {
                   </li>
                 </ul>
               </div>
-              <div className="tabs__element is-active">
+              <div className={`tabs__control ${activeTab === TabName.Description ? 'is-active' : ''}`}>
                 <div className="product__tabs-text">
                   <p>{description}</p>
                 </div>

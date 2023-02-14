@@ -14,6 +14,11 @@ export enum NameSpace {
   PromoData = 'PromoData',
 }
 
+export enum TabName {
+  Features = 'Features',
+  Description = 'Description'
+}
+
 export const MAX_RATING = 5;
 
 export const MAX_CARDS_ON_PAGE = 9;

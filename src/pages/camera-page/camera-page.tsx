@@ -1,22 +1,39 @@
+
+import {useEffect} from 'react';
+import {useParams} from 'react-router-dom';
+import {Helmet} from 'react-helmet-async';
 import {useAppSelector} from '../../hooks/useAppSelector';
+import {useAppDispatch} from '../../hooks/useAppDispatch';
 import Breadcrumbs from '../../components/breadcrumbs/breadcrumbs';
 import ReviewList from '../../components/review-list/review-list';
 import CameraProduct from '../../components/camera-product/camera-product';
 import Header from '../../components/header/header';
 import Footer from '../../components/footer/footer';
 import SimilarCardList from '../../components/similar-card-list/similar-card-list';
-import {getCameras, getCurrentCamera} from '../../store/cameras-data/selectors';
+import {getCurrentCamera, getSimilarCameraList} from '../../store/cameras-data/selectors';
 import { mockReview } from '../../mock/review';
+import { fetchSimilarCameraListAction } from '../../store/api-actions';
 
 function CameraPage(): JSX.Element {
-  const cameras = useAppSelector(getCameras);
+  const {id} = useParams();
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (id) {
+      dispatch(fetchSimilarCameraListAction(Number(id)));
+    }
+  }, [id, dispatch]);
 
   const camera = useAppSelector(getCurrentCamera);
-  //todo: Подключить данные с сервера, пока просто три карточки
-  const similarCameraList = cameras.slice(3, 6);
+  const similarCameraList = useAppSelector(getSimilarCameraList);
+  //todo: Тут просто обрезаю
+  const similarCameraListSlice = similarCameraList.slice(0, 3);
 
   return (
     <div className="wrapper">
+      <Helmet>
+        <title>Camera shoр. Страница товара</title>
+      </Helmet>
       <Header />
       <main>
         <div className="page-content">
@@ -30,7 +47,7 @@ function CameraPage(): JSX.Element {
                 <h2 className="title title--h3">Похожие товары</h2>
                 <div className="product-similar__slider">
                   <div className="product-similar__slider-list">
-                    <SimilarCardList cameras={similarCameraList}/>
+                    <SimilarCardList cameras={similarCameraListSlice}/>
                   </div>
                   <button className="slider-controls slider-controls--prev" type="button" aria-label="Предыдущий слайд" disabled>
                     <svg width="7" height="12" aria-hidden="true">
