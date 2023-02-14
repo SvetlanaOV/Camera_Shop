@@ -2,12 +2,12 @@ import {Fragment} from 'react';
 import Card from '../card/card';
 import {Camera} from '../../types/camera';
 
-type CardListProps = {
+type SimilarCardListProps = {
   cameras: Camera[];
 }
 
 //todo: Класс active только у активных карточек, удалить компонент в дальнейшем
-function SimilarCardList ({cameras}: CardListProps): JSX.Element {
+function SimilarCardList ({cameras}: SimilarCardListProps): JSX.Element {
   return (
     <Fragment>
       {cameras.map((camera) => (

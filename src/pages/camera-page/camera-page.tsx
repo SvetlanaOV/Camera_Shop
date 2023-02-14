@@ -5,11 +5,13 @@ import CameraProduct from '../../components/camera-product/camera-product';
 import Header from '../../components/header/header';
 import Footer from '../../components/footer/footer';
 import SimilarCardList from '../../components/similar-card-list/similar-card-list';
-import {getCameras} from '../../store/cameras-data/selectors';
+import {getCameras, getCurrentCamera} from '../../store/cameras-data/selectors';
 import { mockReview } from '../../mock/review';
 
 function CameraPage(): JSX.Element {
   const cameras = useAppSelector(getCameras);
+
+  const camera = useAppSelector(getCurrentCamera);
   //todo: Подключить данные с сервера, пока просто три карточки
   const similarCameraList = cameras.slice(3, 6);
 
@@ -18,7 +20,7 @@ function CameraPage(): JSX.Element {
       <Header />
       <main>
         <div className="page-content">
-          <Breadcrumbs />
+          <Breadcrumbs camera={camera}/>
           <div className="page-content__section">
             <CameraProduct />
           </div>
