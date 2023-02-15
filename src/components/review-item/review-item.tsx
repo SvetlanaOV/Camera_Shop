@@ -15,19 +15,19 @@ function ReviewItem({reviewContent}: ReviewItemProps): JSX.Element {
       </div>
       <div className="rate review-card__rate">
         <svg width="17" height="16" aria-hidden="true">
-          <use xlinkHref="!#icon-full-star"></use>
+          <use xlinkHref="#icon-full-star"></use>
         </svg>
         <svg width="17" height="16" aria-hidden="true">
-          <use xlinkHref="!#icon-star"></use>
+          <use xlinkHref="#icon-star"></use>
         </svg>
         <svg width="17" height="16" aria-hidden="true">
-          <use xlinkHref="!#icon-star"></use>
+          <use xlinkHref="#icon-star"></use>
         </svg>
         <svg width="17" height="16" aria-hidden="true">
-          <use xlinkHref="!#icon-star"></use>
+          <use xlinkHref="#icon-star"></use>
         </svg>
         <svg width="17" height="16" aria-hidden="true">
-          <use xlinkHref="!#icon-star"></use>
+          <use xlinkHref="#icon-star"></use>
         </svg>
         <p className="visually-hidden">Оценка: {rating}</p>
       </div>

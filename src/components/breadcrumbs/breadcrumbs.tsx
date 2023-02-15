@@ -24,7 +24,7 @@ function Breadcrumbs({camera}: BreadcrumbsProps): JSX.Element {
               <Link className="breadcrumbs__link" to={AppRoute.Root}>
                 Каталог
                 <svg width="5" height="8" aria-hidden="true">
-                  <use xlinkHref="#icon-arrow-mini" />
+                  <use xlinkHref="#icon-arrow-mini"></use>
                 </svg>
               </Link> :
               <span className="breadcrumbs__link breadcrumbs__link--active">

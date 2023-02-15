@@ -18,7 +18,7 @@ function SortForm(): JSX.Element {
             <input type="radio" id="up" name="sort-icon" checked aria-label="По возрастанию" />
             <label htmlFor="up">
               <svg width="16" height="14" aria-hidden="true">
-                <use xlinkHref="!#icon-sort"></use>
+                <use xlinkHref="#icon-sort"></use>
               </svg>
             </label>
           </div>
@@ -26,7 +26,7 @@ function SortForm(): JSX.Element {
             <input type="radio" id="down" name="sort-icon" aria-label="По убыванию" />
             <label htmlFor="down">
               <svg width="16" height="14" aria-hidden="true">
-                <use xlinkHref="!#icon-sort"></use>
+                <use xlinkHref="#icon-sort"></use>
               </svg>
             </label>
           </div>

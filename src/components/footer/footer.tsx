@@ -8,7 +8,7 @@ function Footer(): JSX.Element {
         <div className="footer__info">
           <Link className="footer__logo" to={AppRoute.Root} aria-label="Переход на главную">
             <svg width="100" height="36" aria-hidden="true">
-              <use xlinkHref="!#icon-logo-mono"></use>
+              <use xlinkHref="#icon-logo-mono"></use>
             </svg>
           </Link>
           <p className="footer__description">Интернет-магазин фото- и видеотехники</p>
@@ -16,21 +16,21 @@ function Footer(): JSX.Element {
             <li className="social__item">
               <a className="link" href="!#" aria-label="Переход на страницу вконтатке">
                 <svg width="20" height="20" aria-hidden="true">
-                  <use xlinkHref="!#icon-vk"></use>
+                  <use xlinkHref="#icon-vk"></use>
                 </svg>
               </a>
             </li>
             <li className="social__item">
               <a className="link" href="!#" aria-label="Переход на страницу pinterest">
                 <svg width="20" height="20" aria-hidden="true">
-                  <use xlinkHref="!#icon-pinterest"></use>
+                  <use xlinkHref="#icon-pinterest"></use>
                 </svg>
               </a>
             </li>
             <li className="social__item">
               <a className="link" href="!#" aria-label="Переход на страницу reddit">
                 <svg width="20" height="20" aria-hidden="true">
-                  <use xlinkHref="!#icon-reddit"></use>
+                  <use xlinkHref="#icon-reddit"></use>
                 </svg>
               </a>
             </li>
@@ -41,7 +41,7 @@ function Footer(): JSX.Element {
             <p className="footer__title">Навигация</p>
             <ul className="footer__list">
               <li className="footer__item">
-                <Link className="link" to={AppRoute.Catalog}>Каталог</Link>
+                <Link className="link" to={AppRoute.Root}>Каталог</Link>
               </li>
               <li className="footer__item">
                 <a className="link" href="!#">Гарантии</a>

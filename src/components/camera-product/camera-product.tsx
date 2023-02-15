@@ -1,10 +1,11 @@
-import {useEffect, useState} from 'react';
+import {useEffect} from 'react';
 import {useParams} from 'react-router-dom';
 import {useAppSelector} from '../../hooks/useAppSelector';
 import {useAppDispatch} from '../../hooks/useAppDispatch';
 import {getCurrentCamera} from '../../store/cameras-data/selectors';
 import {fetchCurrentCameraAction} from '../../store/api-actions';
-import {MAX_RATING, TabName} from '../../const';
+import {MAX_RATING} from '../../const';
+import Tabs from '../tabs/tabs';
 
 function CameraProduct(): JSX.Element {
   const {id} = useParams();
@@ -18,9 +19,7 @@ function CameraProduct(): JSX.Element {
     }
   }, [id, dispatch]);
 
-  const {previewImg, previewImg2x, previewImgWebp, previewImgWebp2x, name, type, rating, reviewCount, price, vendorCode, category, level, description} = currentCamera;
-
-  const [activeTab, setActiveTab] = useState(TabName.Features);
+  const {previewImg, previewImg2x, previewImgWebp, previewImgWebp2x, name, rating, reviewCount, price, category} = currentCamera;
 
   return(
     <section className="product">
@@ -45,38 +44,10 @@ function CameraProduct(): JSX.Element {
           <p className="product__price"><span className="visually-hidden">Цена:</span>{price} ₽</p>
           <button className="btn btn--purple" type="button">
             <svg width="24" height="16" aria-hidden="true">
-              <use xlinkHref="!#icon-add-basket"></use>
+              <use xlinkHref="#icon-add-basket"></use>
             </svg>Добавить в корзину
           </button>
-          <div className="tabs product__tabs">
-            <div className="tabs__controls product__tabs-controls">
-              <button className={`tabs__control ${activeTab === TabName.Features ? 'is-active' : ''}`} onClick={() => setActiveTab(TabName.Features)} type="button">Характеристики</button>
-              <button className={`tabs__control ${activeTab === TabName.Description ? 'is-active' : ''}`} onClick={() => setActiveTab(TabName.Description)} type="button">Описание</button>
-            </div>
-            <div className="tabs__content">
-              <div className={`tabs__element ${activeTab === TabName.Features ? 'is-active' : ''}`}>
-                <ul className="product__tabs-list">
-                  <li className="item-list"><span className="item-list__title">Артикул:</span>
-                    <p className="item-list__text">{vendorCode}</p>
-                  </li>
-                  <li className="item-list"><span className="item-list__title">Категория:</span>
-                    <p className="item-list__text">{category}</p>
-                  </li>
-                  <li className="item-list"><span className="item-list__title">Тип камеры:</span>
-                    <p className="item-list__text">{type}</p>
-                  </li>
-                  <li className="item-list"><span className="item-list__title">Уровень:</span>
-                    <p className="item-list__text">{level}</p>
-                  </li>
-                </ul>
-              </div>
-              <div className={`tabs__control ${activeTab === TabName.Description ? 'is-active' : ''}`}>
-                <div className="product__tabs-text">
-                  <p>{description}</p>
-                </div>
-              </div>
-            </div>
-          </div>
+          <Tabs />
         </div>
       </div>
     </section>
