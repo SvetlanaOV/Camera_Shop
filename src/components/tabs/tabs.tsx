@@ -6,7 +6,7 @@ import {TabName} from '../../const';
 function Tabs(): JSX.Element {
   const currentCamera = useAppSelector(getCurrentCamera);
 
-  const [activeTab, setActiveTab] = useState(TabName.Features);
+  const [activeTab, setActiveTab] = useState(TabName.Description);
 
   const {vendorCode, category, type, level} = currentCamera;
 

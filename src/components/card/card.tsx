@@ -10,6 +10,7 @@ type CardProps = {
 
 function Card({camera}: CardProps) {
   const {id, previewImg, previewImg2x, previewImgWebp, previewImgWebp2x, name, rating, reviewCount, price, category} = camera;
+
   return(
     <Fragment key={id}>
       <div className="product-card__img">
