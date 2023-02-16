@@ -5,7 +5,7 @@ import Pagination from '../pagination/pagination';
 import FilterForm from '../filter-form/filter-form';
 import SortForm from '../sort-form/sort-form';
 import {getCameras} from '../../store/cameras-data/selectors';
-import { PAGE_COUNT_STEP, MAX_CARDS_ON_PAGE } from '../../const';
+import {PAGE_COUNT_STEP, MAX_CARDS_ON_PAGE} from '../../const';
 
 function Catalog(): JSX.Element{
   const cameras = useAppSelector(getCameras);

@@ -29,7 +29,7 @@ export const fetchPromoAction = createAsyncThunk<Promo, undefined, {
   }
 );
 
-export const fetchCurrentCameraAction = createAsyncThunk<Camera, number, {
+export const fetchCurrentCameraAction = createAsyncThunk<Camera, string, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
@@ -41,7 +41,7 @@ export const fetchCurrentCameraAction = createAsyncThunk<Camera, number, {
   }
 );
 
-export const fetchSimilarCameraListAction = createAsyncThunk<Camera[], number, {
+export const fetchSimilarCameraListAction = createAsyncThunk<Camera[], string, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;

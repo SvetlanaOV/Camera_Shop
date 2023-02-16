@@ -1,23 +1,10 @@
-import {useEffect} from 'react';
-import {useParams} from 'react-router-dom';
 import {useAppSelector} from '../../hooks/useAppSelector';
-import {useAppDispatch} from '../../hooks/useAppDispatch';
 import {getCurrentCamera} from '../../store/cameras-data/selectors';
-import {fetchCurrentCameraAction} from '../../store/api-actions';
 import {MAX_RATING} from '../../const';
 import Tabs from '../tabs/tabs';
 
 function CameraProduct(): JSX.Element {
-  const {id} = useParams();
-  const dispatch = useAppDispatch();
-
   const currentCamera = useAppSelector(getCurrentCamera);
-
-  useEffect(() => {
-    if (id) {
-      dispatch(fetchCurrentCameraAction(Number(id)));
-    }
-  }, [id, dispatch]);
 
   const {previewImg, previewImg2x, previewImgWebp, previewImgWebp2x, name, rating, reviewCount, price, category} = currentCamera;
 

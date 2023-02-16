@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import {Fragment} from 'react';
 import {Link} from 'react-router-dom';
 import {APIRoute} from '../../const';
 import {Camera} from '../../types/camera';

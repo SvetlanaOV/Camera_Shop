@@ -7,10 +7,9 @@ import {MAX_CARDS_ON_PAGE, DEFAULT_PAGE, PAGE_COUNT_STEP, AppRoute} from '../../
 function Pagination(): JSX.Element {
   const cameras = useAppSelector(getCameras);
 
-  const params = useParams();
-  const pageId = Number(params.pageId);
+  const {pageId} = useParams();
 
-  const [currentPage, setCurrentPage] = useState(pageId);
+  const [currentPage, setCurrentPage] = useState(Number(pageId));
 
   const pageCount = Math.ceil(cameras.length / MAX_CARDS_ON_PAGE);
 

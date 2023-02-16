@@ -8,7 +8,7 @@ function Tabs(): JSX.Element {
 
   const [activeTab, setActiveTab] = useState(TabName.Description);
 
-  const {vendorCode, category, type, level} = currentCamera;
+  const {vendorCode, category, type, level, description} = currentCamera;
 
   return (
     <div className="tabs product__tabs">
@@ -35,7 +35,7 @@ function Tabs(): JSX.Element {
         </div>
         <div className={`tabs__element ${activeTab === TabName.Description ? 'is-active' : ''}`}>
           <div className="product__tabs-text">
-            <p>{currentCamera.description}</p>
+            <p>{description}</p>
           </div>
         </div>
       </div>
