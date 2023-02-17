@@ -11,8 +11,7 @@ import Header from '../../components/header/header';
 import Footer from '../../components/footer/footer';
 import SimilarCardList from '../../components/similar-card-list/similar-card-list';
 import {getCurrentCamera, getSimilarCameraList} from '../../store/cameras-data/selectors';
-import { mockReview } from '../../mock/review';
-import {fetchSimilarCameraListAction, fetchCurrentCameraAction} from '../../store/api-actions';
+import {fetchSimilarCameraListAction, fetchCurrentCameraAction, fetchReviewListAction} from '../../store/api-actions';
 import {MIN_SLIDES_ON_PAGE} from '../../const';
 
 function CameraPage(): JSX.Element {
@@ -26,6 +25,7 @@ function CameraPage(): JSX.Element {
     if (id) {
       dispatch(fetchCurrentCameraAction(id));
       dispatch(fetchSimilarCameraListAction(id));
+      dispatch(fetchReviewListAction(id));
     }
   }, [id, dispatch]);
 
@@ -50,7 +50,7 @@ function CameraPage(): JSX.Element {
             </section>
           </div>
           <div className="page-content__section">
-            <ReviewList reviews={mockReview}/>
+            <ReviewList />
           </div>
         </div >
       </main >

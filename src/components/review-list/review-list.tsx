@@ -1,11 +1,16 @@
-import {Review} from '../../types/review';
+import {useState} from 'react';
+import {useAppSelector} from '../../hooks/useAppSelector';
+import {getReviewList} from '../../store/reviews-data/selectors';
+import {REVIEW_COUNTER_STEP, DEFAULT_REVIEW} from '../../const';
 import ReviewItem from '../review-item/review-item';
 
-type ReviewItemProps = {
-  reviews: Review[];
-}
+function ReviewList(): JSX.Element {
+  const [featuredReviewList, setFeaturedReviewList] = useState(DEFAULT_REVIEW);
 
-function ReviewList({reviews}: ReviewItemProps): JSX.Element {
+  const reviewList = useAppSelector(getReviewList);
+
+  const reviewListSlice = reviewList.slice(DEFAULT_REVIEW, (featuredReviewList + REVIEW_COUNTER_STEP));
+
   return(
     <section className="review-block">
       <div className="container">
@@ -14,15 +19,16 @@ function ReviewList({reviews}: ReviewItemProps): JSX.Element {
           <button className="btn" type="button">Оставить свой отзыв</button>
         </div>
         <ul className="review-block__list">
-          {reviews.map((review) => (
+          {reviewListSlice.map((review) => (
             <ReviewItem
               key={review.id}
-              reviewContent={review}
+              reviewItem={review}
             />
           ))}
         </ul>
-        <div className="review-block__buttons">
-          <button className="btn btn--purple" type="button">Показать больше отзывов
+        <div className={(reviewList.length !== reviewListSlice.length) ? 'review-block__buttons' : 'visually-hidden'}>
+          <button onClick={() => setFeaturedReviewList(featuredReviewList + REVIEW_COUNTER_STEP)} className="btn btn--purple" type="button">
+            Показать больше отзывов
           </button>
         </div>
       </div>

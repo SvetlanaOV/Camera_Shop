@@ -1,6 +1,7 @@
 import {store} from '../store/index';
 import {Camera} from './camera';
 import {Promo} from './promo';
+import {Review} from './review';
 
 export type CamerasData = {
   cameras: Camera[];
@@ -11,6 +12,11 @@ export type CamerasData = {
 
 export type PromoData = {
   promo: Promo;
+  isDataLoading: boolean;
+};
+
+export type ReviewsData = {
+  reviews: Review[];
   isDataLoading: boolean;
 };
 

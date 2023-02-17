@@ -7,7 +7,7 @@ export const mockReview: Review[] = [
     advantage: 'Легкая в плане веса, удобная в интерфейсе',
     disadvantage: 'Быстро садиться зарядка',
     review: 'Это моя первая камера. Я в восторге, нареканий нет',
-    rating: 4,
+    rating: 1,
     createAt: '2022-07-09T13:24:57.980Z',
     cameraId: 1
   }
