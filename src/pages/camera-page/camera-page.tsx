@@ -13,6 +13,7 @@ import SimilarCardList from '../../components/similar-card-list/similar-card-lis
 import {getCurrentCamera, getSimilarCameraList} from '../../store/cameras-data/selectors';
 import {fetchSimilarCameraListAction, fetchCurrentCameraAction, fetchReviewListAction} from '../../store/api-actions';
 import {MIN_SLIDES_ON_PAGE} from '../../const';
+import ReviewModal from '../../components/review-modal/review-modal';
 
 function CameraPage(): JSX.Element {
   const {id} = useParams();
@@ -51,6 +52,7 @@ function CameraPage(): JSX.Element {
           </div>
           <div className="page-content__section">
             <ReviewList />
+            <ReviewModal />
           </div>
         </div >
       </main >

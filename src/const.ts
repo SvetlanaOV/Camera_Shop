@@ -7,6 +7,7 @@ export enum AppRoute {
 export enum APIRoute {
   Cameras = '/cameras',
   Promo = '/promo',
+  Reviews = '/reviews'
 }
 
 export enum NameSpace {
@@ -19,6 +20,29 @@ export enum TabName {
   Features = 'Features',
   Description = 'Description'
 }
+
+export const REVIEW_STAR_RATING = [
+  {
+    starNumber: 5,
+    title: 'Отлично'
+  },
+  {
+    starNumber: 4,
+    title: 'Хорошо'
+  },
+  {
+    starNumber: 3,
+    title: 'Нормально'
+  },
+  {
+    starNumber: 2,
+    title: 'Плохо'
+  },
+  {
+    starNumber: 1,
+    title: 'Ужасно'
+  },
+];
 
 export const MAX_RATING = 5;
 
@@ -39,3 +63,4 @@ export const MIN_SLIDES_ON_PAGE = 0;
 export const REVIEW_COUNTER_STEP = 3;
 
 export const DEFAULT_REVIEW = 0;
+

@@ -1,4 +1,59 @@
+import {useState, ChangeEvent, FormEvent, Fragment} from 'react';
+import {useAppDispatch} from '../../hooks/useAppDispatch';
+import {useAppSelector} from '../../hooks/useAppSelector';
+import { RevieWPost } from '../../types/review';
+import { sendNewReviewAction } from '../../store/api-actions';
+import { getCurrentCamera } from '../../store/cameras-data/selectors';
+import { REVIEW_STAR_RATING } from '../../const';
+
 function ReviewModal(): JSX.Element {
+  const dispatch = useAppDispatch();
+
+  const [formData, setFormData] = useState({
+    cameraId: 1,
+    userName: '',
+    advantage: '',
+    disadvantage: '',
+    review: '',
+    rating: 1,
+  });
+
+  const handleReviewFormChange = (evt: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>) => {
+    const {name, value} = evt.target;
+    setFormData({...formData, [name]: value});
+  };
+
+  const onSubmit = (reviewData: RevieWPost) => {
+    dispatch(sendNewReviewAction(reviewData));
+  };
+
+  const currentCamera = useAppSelector(getCurrentCamera);
+
+  const handleReviewFormSubmit = (evt: FormEvent<HTMLFormElement>) => {
+    evt.preventDefault();
+
+    if (currentCamera.id) {
+      onSubmit({
+        cameraId: currentCamera.id,
+        userName: formData.userName,
+        advantage: formData.advantage,
+        disadvantage: formData.disadvantage,
+        review: formData.review,
+        rating: Number(formData.rating),
+      });
+    }
+
+    setFormData({...formData,
+      cameraId: 1,
+      userName: '',
+      advantage: '',
+      disadvantage: '',
+      review: '',
+      rating: 1,
+    });
+  };
+
+
   return(
     <div className="modal is-active">
       <div className="modal__wrapper">
@@ -7,7 +62,7 @@ function ReviewModal(): JSX.Element {
         <div className="modal__content">
           <p className="title title--h4">Оставить отзыв</p>
           <div className="form-review">
-            <form method="post">
+            <form method="post" action="#" onSubmit={handleReviewFormSubmit}>
               <div className="form-review__rate">
                 <fieldset className="rate form-review__item">
                   <legend className="rate__caption">Рейтинг
@@ -17,19 +72,16 @@ function ReviewModal(): JSX.Element {
                   </legend>
                   <div className="rate__bar">
                     <div className="rate__group">
-                      <input className="visually-hidden" id="star-5" name="rate" type="radio" value="5" />
-                      <label className="rate__label" htmlFor="star-5" title="Отлично"></label>
-                      <input className="visually-hidden" id="star-4" name="rate" type="radio" value="4" />
-                      <label className="rate__label" htmlFor="star-4" title="Хорошо"></label>
-                      <input className="visually-hidden" id="star-3" name="rate" type="radio" value="3" />
-                      <label className="rate__label" htmlFor="star-3" title="Нормально"></label>
-                      <input className="visually-hidden" id="star-2" name="rate" type="radio" value="2" />
-                      <label className="rate__label" htmlFor="star-2" title="Плохо"></label>
-                      <input className="visually-hidden" id="star-1" name="rate" type="radio" value="1" />
-                      <label className="rate__label" htmlFor="star-1" title="Ужасно"></label>
+                      {REVIEW_STAR_RATING.map((item) => (
+                        <Fragment key = {item.starNumber}>
+                          <input onChange={handleReviewFormChange} className="visually-hidden" id={`star-${item.starNumber}`} name="rating" type="radio" value={item.starNumber} checked={(item.starNumber === Number(formData.rating))}/>
+                          <label className="rate__label" htmlFor={`star-${item.starNumber}`} title={item.title}></label>
+                        </Fragment>
+                      )
+                      )}
                     </div>
                     <div className="rate__progress">
-                      <span className="rate__stars">0</span>
+                      <span className="rate__stars">{formData.rating}</span>
                       <span>/</span>
                       <span className="rate__all-stars">5</span>
                     </div>
@@ -43,7 +95,7 @@ function ReviewModal(): JSX.Element {
                         <use xlinkHref="#icon-snowflake"></use>
                       </svg>
                     </span>
-                    <input type="text" name="user-name" placeholder="Введите ваше имя" required />
+                    <input onChange={handleReviewFormChange} type="text" name="userName" id="userName" value={formData.userName} placeholder="Введите ваше имя" required />
                   </label>
                   <p className="custom-input__error">Нужно указать имя</p>
                 </div>
@@ -54,7 +106,7 @@ function ReviewModal(): JSX.Element {
                         <use xlinkHref="#icon-snowflake"></use>
                       </svg>
                     </span>
-                    <input type="text" name="user-plus" placeholder="Основные преимущества товара" required />
+                    <input onChange={handleReviewFormChange} type="text" name="advantage" id="advantage" value={formData.advantage} placeholder="Основные преимущества товара" required />
                   </label>
                   <p className="custom-input__error">Нужно указать достоинства</p>
                 </div>
@@ -65,7 +117,7 @@ function ReviewModal(): JSX.Element {
                         <use xlinkHref="#icon-snowflake"></use>
                       </svg>
                     </span>
-                    <input type="text" name="user-minus" placeholder="Главные недостатки товара" required />
+                    <input onChange={handleReviewFormChange} type="text" name="disadvantage" id="disadvantage" value={formData.disadvantage} placeholder="Главные недостатки товара" required />
                   </label>
                   <p className="custom-input__error">Нужно указать недостатки</p>
                 </div>
@@ -76,7 +128,7 @@ function ReviewModal(): JSX.Element {
                         <use xlinkHref="#icon-snowflake"></use>
                       </svg>
                     </span>
-                    <textarea name="user-comment" minLength={5} placeholder="Поделитесь своим опытом покупки"></textarea>
+                    <textarea onChange={handleReviewFormChange} name="review" id="review" value={formData.review} minLength={5} placeholder="Поделитесь своим опытом покупки"></textarea>
                   </label>
                   <div className="custom-textarea__error">Нужно добавить комментарий</div>
                 </div>
