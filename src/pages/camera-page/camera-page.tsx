@@ -1,5 +1,5 @@
 
-import {useEffect} from 'react';
+import {useEffect, useState} from 'react';
 import {useParams} from 'react-router-dom';
 import {Helmet} from 'react-helmet-async';
 import {useAppDispatch} from '../../hooks/useAppDispatch';
@@ -21,6 +21,8 @@ function CameraPage(): JSX.Element {
 
   const currentCamera = useAppSelector(getCurrentCamera);
   const similarCameraList = useAppSelector(getSimilarCameraList);
+
+  const [isModalOpened, setModalOpened] = useState(false);
 
   useEffect(() => {
     if (id) {
@@ -51,8 +53,8 @@ function CameraPage(): JSX.Element {
             </section>
           </div>
           <div className="page-content__section">
-            <ReviewList />
-            <ReviewModal />
+            <ReviewList setModalOpened={setModalOpened}/>
+            <ReviewModal isModalOpened={isModalOpened} setModalOpened={setModalOpened}/>
           </div>
         </div >
       </main >

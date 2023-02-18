@@ -4,7 +4,11 @@ import {getReviewList} from '../../store/reviews-data/selectors';
 import {REVIEW_COUNTER_STEP, DEFAULT_REVIEW} from '../../const';
 import ReviewItem from '../review-item/review-item';
 
-function ReviewList(): JSX.Element {
+type ReviewListProps = {
+  setModalOpened: (status: boolean) => void;
+};
+
+function ReviewList({setModalOpened}: ReviewListProps): JSX.Element {
   const [featuredReviewList, setFeaturedReviewList] = useState(DEFAULT_REVIEW);
 
   const reviewList = useAppSelector(getReviewList);
@@ -16,7 +20,7 @@ function ReviewList(): JSX.Element {
       <div className="container">
         <div className="page-content__headed">
           <h2 className="title title--h3">Отзывы</h2>
-          <button className="btn" type="button">Оставить свой отзыв</button>
+          <button onClick={() => setModalOpened(true)} className="btn" type="button">Оставить свой отзыв</button>
         </div>
         <ul className="review-block__list">
           {reviewListSlice.map((review) => (

@@ -1,21 +1,26 @@
 import {useState, ChangeEvent, FormEvent, Fragment} from 'react';
 import {useAppDispatch} from '../../hooks/useAppDispatch';
 import {useAppSelector} from '../../hooks/useAppSelector';
-import { RevieWPost } from '../../types/review';
-import { sendNewReviewAction } from '../../store/api-actions';
-import { getCurrentCamera } from '../../store/cameras-data/selectors';
-import { REVIEW_STAR_RATING } from '../../const';
+import {RevieWPost} from '../../types/review';
+import {sendNewReviewAction} from '../../store/api-actions';
+import {getCurrentCamera} from '../../store/cameras-data/selectors';
+import {REVIEW_STAR_RATING} from '../../const';
 
-function ReviewModal(): JSX.Element {
+type ReviewModalProps = {
+  isModalOpened: boolean;
+  setModalOpened: (status: boolean) => void;
+};
+
+function ReviewModal({isModalOpened, setModalOpened}: ReviewModalProps): JSX.Element {
   const dispatch = useAppDispatch();
 
   const [formData, setFormData] = useState({
-    cameraId: 1,
+    cameraId: 0,
     userName: '',
     advantage: '',
     disadvantage: '',
     review: '',
-    rating: 1,
+    rating: 0,
   });
 
   const handleReviewFormChange = (evt: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>) => {
@@ -44,18 +49,18 @@ function ReviewModal(): JSX.Element {
     }
 
     setFormData({...formData,
-      cameraId: 1,
+      cameraId: 0,
       userName: '',
       advantage: '',
       disadvantage: '',
       review: '',
-      rating: 1,
+      rating: 0,
     });
   };
 
 
   return(
-    <div className="modal is-active">
+    <div className={`modal ${isModalOpened ? 'is-active' : ''}`}>
       <div className="modal__wrapper">
         <div className="modal__overlay">
         </div>
@@ -136,7 +141,7 @@ function ReviewModal(): JSX.Element {
               <button className="btn btn--purple form-review__btn" type="submit">Отправить отзыв</button>
             </form>
           </div>
-          <button className="cross-btn" type="button" aria-label="Закрыть попап">
+          <button onClick={() => setModalOpened(false)} className="cross-btn" type="button" aria-label="Закрыть попап">
             <svg width="10" height="10" aria-hidden="true">
               <use xlinkHref="#icon-close"></use>
             </svg>
