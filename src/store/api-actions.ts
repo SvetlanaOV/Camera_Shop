@@ -3,7 +3,7 @@ import {AxiosInstance} from 'axios';
 import {APIRoute} from '../const';
 import {Camera} from '../types/camera';
 import {Promo} from '../types/promo';
-import {Review, RevieWPost} from '../types/review';
+import {Review, ReviewPost} from '../types/review';
 import {AppDispatch, State} from '../types/state';
 
 export const fetchCamerasAction = createAsyncThunk<Camera[], undefined, {
@@ -66,14 +66,13 @@ export const fetchReviewListAction = createAsyncThunk<Review[], string, {
   },
 );
 
-export const sendNewReviewAction = createAsyncThunk<Review[], RevieWPost, {
+export const sendNewReviewAction = createAsyncThunk<void, ReviewPost, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
 }>(
-  'data/sendReview',
-  async ({cameraId, rating, userName, advantage, disadvantage, review}, {dispatch, extra: api}) => {
-    const {data} = await api.post<Review[]>(`${APIRoute.Reviews}`, {rating, cameraId, userName, advantage, disadvantage, review});
-    return data;
-  },
+  'films/send-review',
+  async (review: ReviewPost, { extra: api}) => {
+    await api.post<ReviewPost>(APIRoute.Reviews, review);
+  }
 );

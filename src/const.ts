@@ -21,6 +21,8 @@ export enum TabName {
   Description = 'Description'
 }
 
+export const DEFAULT_REVIEW_RATING = 0;
+
 export const REVIEW_STAR_RATING = [
   {
     starNumber: 5,

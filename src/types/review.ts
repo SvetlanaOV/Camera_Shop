@@ -8,7 +8,7 @@ export type Review = {
   createAt: string;
   cameraId: number;
 };
-export type RevieWPost = {
+export type ReviewPost = {
   cameraId: number;
   userName: string;
   advantage: string;
