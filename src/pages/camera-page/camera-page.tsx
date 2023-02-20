@@ -14,6 +14,7 @@ import {getCurrentCamera, getSimilarCameraList} from '../../store/cameras-data/s
 import {fetchSimilarCameraListAction, fetchCurrentCameraAction, fetchReviewListAction} from '../../store/api-actions';
 import {MIN_SLIDES_ON_PAGE} from '../../const';
 import ReviewModal from '../../components/review-modal/review-modal';
+import ReviewModalSuccess from '../../components/review-modal-success/review-modal-success';
 
 function CameraPage(): JSX.Element {
   const {id} = useParams();
@@ -23,6 +24,7 @@ function CameraPage(): JSX.Element {
   const similarCameraList = useAppSelector(getSimilarCameraList);
 
   const [isModalOpened, setModalOpened] = useState(false);
+  const [isModalSuccessOpened, setModalSuccessOpened] = useState(false);
 
   useEffect(() => {
     if (id) {
@@ -54,7 +56,8 @@ function CameraPage(): JSX.Element {
           </div>
           <div className="page-content__section">
             <ReviewList setModalOpened={setModalOpened}/>
-            <ReviewModal isModalOpened={isModalOpened} setModalOpened={setModalOpened}/>
+            <ReviewModal isModalOpened={isModalOpened} setModalOpened={setModalOpened} />
+            <ReviewModalSuccess isModalSuccessOpened={isModalSuccessOpened} setModalSuccessOpened={setModalSuccessOpened} />
           </div>
         </div >
       </main >

@@ -31,13 +31,12 @@ function ReviewModal({isModalOpened, setModalOpened}: ReviewModalProps): JSX.Ele
     reset();
   });
 
-
   const onSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
     handleReviewFormSubmit(evt);
   };
 
-
+  //todo: Рейтинг не очищается после отправки формы
   return(
     <div className={`modal ${isModalOpened ? 'is-active' : ''}`}>
       <div className="modal__wrapper">
