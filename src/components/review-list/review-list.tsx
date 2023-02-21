@@ -36,11 +36,11 @@ function ReviewList({setModalOpened}: ReviewListProps): JSX.Element {
           </button>
         </div>
       </div>
-      <a className="up-btn" href="#header">
+      <button className="up-btn">
         <svg width="12" height="18" aria-hidden="true">
           <use xlinkHref="#icon-arrow2"></use>
         </svg>
-      </a>
+      </button>
     </section>
   );
 }

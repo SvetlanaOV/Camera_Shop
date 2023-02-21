@@ -10,9 +10,10 @@ import {REVIEW_STAR_RATING, DEFAULT_REVIEW_RATING} from '../../const';
 type ReviewModalProps = {
   isModalOpened: boolean;
   setModalOpened: (status: boolean) => void;
+  setModalSuccessOpened: (status: boolean) => void;
 };
 
-function ReviewModal({isModalOpened, setModalOpened}: ReviewModalProps): JSX.Element {
+function ReviewModal({isModalOpened, setModalOpened, setModalSuccessOpened}: ReviewModalProps): JSX.Element {
   const dispatch = useAppDispatch();
   const currentCamera = useAppSelector(getCurrentCamera);
 
@@ -34,14 +35,16 @@ function ReviewModal({isModalOpened, setModalOpened}: ReviewModalProps): JSX.Ele
   const onSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
     handleReviewFormSubmit(evt);
+
+    setModalOpened(false);
+    setModalSuccessOpened(true);
   };
 
   //todo: Рейтинг не очищается после отправки формы
   return(
     <div className={`modal ${isModalOpened ? 'is-active' : ''}`}>
       <div className="modal__wrapper">
-        <div className="modal__overlay">
-        </div>
+        <div onClick={() => setModalOpened(false)} className="modal__overlay"></div>
         <div className="modal__content">
           <p className="title title--h4">Оставить отзыв</p>
           <div className="form-review">
@@ -57,7 +60,7 @@ function ReviewModal({isModalOpened, setModalOpened}: ReviewModalProps): JSX.Ele
                     <div className="rate__group">
                       {REVIEW_STAR_RATING.map((item) => (
                         <Fragment key = {item.starNumber}>
-                          <input onClick={() => setCurrentRating(item.starNumber)} className="visually-hidden" id={`star-${item.starNumber}`} type="radio" value={item.starNumber} {...register('rating', {required: true})} />
+                          <input onClick={() => setCurrentRating(item.starNumber)} className="visually-hidden" type="radio" value={item.starNumber} {...register('rating', {required: true})} />
                           <label className="rate__label" htmlFor={`star-${item.starNumber}`} title={item.title}></label>
                         </Fragment>
                       )

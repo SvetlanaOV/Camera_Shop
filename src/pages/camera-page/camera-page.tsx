@@ -56,7 +56,7 @@ function CameraPage(): JSX.Element {
           </div>
           <div className="page-content__section">
             <ReviewList setModalOpened={setModalOpened}/>
-            <ReviewModal isModalOpened={isModalOpened} setModalOpened={setModalOpened} />
+            <ReviewModal isModalOpened={isModalOpened} setModalOpened={setModalOpened} setModalSuccessOpened={setModalSuccessOpened}/>
             <ReviewModalSuccess isModalSuccessOpened={isModalSuccessOpened} setModalSuccessOpened={setModalSuccessOpened} />
           </div>
         </div >
