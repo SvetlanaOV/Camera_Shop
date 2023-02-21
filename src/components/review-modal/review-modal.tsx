@@ -6,6 +6,7 @@ import {ReviewPost} from '../../types/review';
 import {sendNewReviewAction} from '../../store/api-actions';
 import {getCurrentCamera} from '../../store/cameras-data/selectors';
 import {REVIEW_STAR_RATING, DEFAULT_REVIEW_RATING} from '../../const';
+import { useKeyDown } from '../../hooks/useKeyDown';
 
 type ReviewModalProps = {
   isModalOpened: boolean;
@@ -16,6 +17,8 @@ type ReviewModalProps = {
 function ReviewModal({isModalOpened, setModalOpened, setModalSuccessOpened}: ReviewModalProps): JSX.Element {
   const dispatch = useAppDispatch();
   const currentCamera = useAppSelector(getCurrentCamera);
+
+  useKeyDown(setModalOpened);
 
   const [currentRating, setCurrentRating] = useState(DEFAULT_REVIEW_RATING);
 
@@ -44,7 +47,7 @@ function ReviewModal({isModalOpened, setModalOpened, setModalSuccessOpened}: Rev
   return(
     <div className={`modal ${isModalOpened ? 'is-active' : ''}`}>
       <div className="modal__wrapper">
-        <div onClick={() => setModalOpened(false)} className="modal__overlay"></div>
+        <div onClick={() => {setModalOpened(false); document.body.style.overflow = 'scroll';}} className="modal__overlay"></div>
         <div className="modal__content">
           <p className="title title--h4">Оставить отзыв</p>
           <div className="form-review">
@@ -60,7 +63,7 @@ function ReviewModal({isModalOpened, setModalOpened, setModalSuccessOpened}: Rev
                     <div className="rate__group">
                       {REVIEW_STAR_RATING.map((item) => (
                         <Fragment key = {item.starNumber}>
-                          <input onClick={() => setCurrentRating(item.starNumber)} className="visually-hidden" type="radio" value={item.starNumber} {...register('rating', {required: true})} />
+                          <input onClick={() => setCurrentRating(item.starNumber)} className="visually-hidden" type="radio" id={`star-${item.starNumber}`} value={item.starNumber} {...register('rating', {required: true})} />
                           <label className="rate__label" htmlFor={`star-${item.starNumber}`} title={item.title}></label>
                         </Fragment>
                       )
@@ -122,7 +125,7 @@ function ReviewModal({isModalOpened, setModalOpened, setModalSuccessOpened}: Rev
               <button className="btn btn--purple form-review__btn" type="submit">Отправить отзыв</button>
             </form>
           </div>
-          <button onClick={() => setModalOpened(false)} className="cross-btn" type="button" aria-label="Закрыть попап">
+          <button onClick={() => {setModalOpened(false); document.body.style.overflow = 'scroll';}} className="cross-btn" type="button" aria-label="Закрыть попап">
             <svg width="10" height="10" aria-hidden="true">
               <use xlinkHref="#icon-close"></use>
             </svg>
