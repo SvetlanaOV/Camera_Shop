@@ -8,6 +8,13 @@ type ReviewListProps = {
   setModalOpened: (status: boolean) => void;
 };
 
+const scrollToTop = () => window.scrollTo({
+  top: 0,
+  left: 0,
+  behavior: 'smooth'
+});
+
+
 function ReviewList({setModalOpened}: ReviewListProps): JSX.Element {
   const [featuredReviewList, setFeaturedReviewList] = useState(DEFAULT_REVIEW);
 
@@ -36,7 +43,7 @@ function ReviewList({setModalOpened}: ReviewListProps): JSX.Element {
           </button>
         </div>
       </div>
-      <button className="up-btn">
+      <button onClick={scrollToTop} className="up-btn">
         <svg width="12" height="18" aria-hidden="true">
           <use xlinkHref="#icon-arrow2"></use>
         </svg>

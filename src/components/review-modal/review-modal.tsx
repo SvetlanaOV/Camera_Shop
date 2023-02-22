@@ -1,4 +1,4 @@
-import {useState, Fragment, FormEvent} from 'react';
+import {useState, Fragment, FormEvent, useEffect} from 'react';
 import {useForm} from 'react-hook-form';
 import {useAppDispatch} from '../../hooks/useAppDispatch';
 import {useAppSelector} from '../../hooks/useAppSelector';
@@ -6,6 +6,7 @@ import {useKeyDown} from '../../hooks/useKeyDown';
 import {ReviewPost} from '../../types/review';
 import {sendNewReviewAction} from '../../store/api-actions';
 import {getCurrentCamera} from '../../store/cameras-data/selectors';
+import {getDataLoaded} from '../../store/reviews-data/selectors';
 import {REVIEW_STAR_RATING, DEFAULT_REVIEW_RATING} from '../../const';
 
 type ReviewModalProps = {
@@ -17,12 +18,21 @@ type ReviewModalProps = {
 function ReviewModal({isModalOpened, setModalOpened, setModalSuccessOpened}: ReviewModalProps): JSX.Element {
   const dispatch = useAppDispatch();
   const currentCamera = useAppSelector(getCurrentCamera);
+  const isDataLoading = useAppSelector(getDataLoaded);
 
   useKeyDown(setModalOpened);
 
   const [currentRating, setCurrentRating] = useState(DEFAULT_REVIEW_RATING);
 
-  const {register, handleSubmit, formState: {errors}, reset} = useForm<ReviewPost>({mode: 'all'});
+  const {register, handleSubmit, formState: {errors, isValid}, reset, setFocus} = useForm<ReviewPost>({mode: 'all'});
+
+  useEffect(() => {
+    if (isModalOpened) {
+      setTimeout(() => {
+        setFocus('rating');
+      }, 500);
+    }
+  }, [isModalOpened, setFocus]);
 
   const handleReviewFormSubmit = handleSubmit((review) => {
     const reviewData = {
@@ -42,9 +52,11 @@ function ReviewModal({isModalOpened, setModalOpened, setModalSuccessOpened}: Rev
     setModalOpened(false);
     setModalSuccessOpened(true);
 
+    setCurrentRating(DEFAULT_REVIEW_RATING);
   };
 
-  //todo: Рейтинг не очищается после отправки формы
+  const isButtonDisabled = !isValid || isDataLoading;
+
   return(
     <div className={`modal ${isModalOpened ? 'is-active' : ''}`}>
       <div className="modal__wrapper">
@@ -118,15 +130,15 @@ function ReviewModal({isModalOpened, setModalOpened, setModalSuccessOpened}: Rev
                         <use xlinkHref="#icon-snowflake"></use>
                       </svg>
                     </span>
-                    <textarea placeholder="Поделитесь своим опытом покупки" {...register('review', {required: true, minLength: 5})} aria-invalid={errors.review ? 'true' : 'false'}></textarea>
+                    <textarea placeholder="Поделитесь своим опытом покупки" {...register('review', {required: true, minLength: 5, pattern: /^[^\s][a-zA-Zа-яА-Я\s][^\s]*$/})} aria-invalid={errors.review ? 'true' : 'false'}></textarea>
                   </label>
                   <div className="custom-textarea__error">Нужно добавить комментарий</div>
                 </div>
               </div>
-              <button className="btn btn--purple form-review__btn" type="submit">Отправить отзыв</button>
+              <button className="btn btn--purple form-review__btn" type="submit" disabled={isButtonDisabled}>Отправить отзыв</button>
             </form>
           </div>
-          <button onClick={() => setModalOpened(false)} className="cross-btn" type="button" aria-label="Закрыть попап">
+          <button onClick={() => setModalOpened(false)} onBlur={() => setFocus('rating')} className="cross-btn" type="button" aria-label="Закрыть попап">
             <svg width="10" height="10" aria-hidden="true">
               <use xlinkHref="#icon-close"></use>
             </svg>
