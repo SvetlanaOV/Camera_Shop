@@ -2,11 +2,11 @@ import {useState, Fragment, FormEvent} from 'react';
 import {useForm} from 'react-hook-form';
 import {useAppDispatch} from '../../hooks/useAppDispatch';
 import {useAppSelector} from '../../hooks/useAppSelector';
+import {useKeyDown} from '../../hooks/useKeyDown';
 import {ReviewPost} from '../../types/review';
 import {sendNewReviewAction} from '../../store/api-actions';
 import {getCurrentCamera} from '../../store/cameras-data/selectors';
 import {REVIEW_STAR_RATING, DEFAULT_REVIEW_RATING} from '../../const';
-import { useKeyDown } from '../../hooks/useKeyDown';
 
 type ReviewModalProps = {
   isModalOpened: boolean;
@@ -41,13 +41,14 @@ function ReviewModal({isModalOpened, setModalOpened, setModalSuccessOpened}: Rev
 
     setModalOpened(false);
     setModalSuccessOpened(true);
+
   };
 
   //todo: Рейтинг не очищается после отправки формы
   return(
     <div className={`modal ${isModalOpened ? 'is-active' : ''}`}>
       <div className="modal__wrapper">
-        <div onClick={() => {setModalOpened(false); document.body.style.overflow = 'scroll';}} className="modal__overlay"></div>
+        <div onClick={() => setModalOpened(false)} className="modal__overlay"></div>
         <div className="modal__content">
           <p className="title title--h4">Оставить отзыв</p>
           <div className="form-review">
@@ -125,7 +126,7 @@ function ReviewModal({isModalOpened, setModalOpened, setModalSuccessOpened}: Rev
               <button className="btn btn--purple form-review__btn" type="submit">Отправить отзыв</button>
             </form>
           </div>
-          <button onClick={() => {setModalOpened(false); document.body.style.overflow = 'scroll';}} className="cross-btn" type="button" aria-label="Закрыть попап">
+          <button onClick={() => setModalOpened(false)} className="cross-btn" type="button" aria-label="Закрыть попап">
             <svg width="10" height="10" aria-hidden="true">
               <use xlinkHref="#icon-close"></use>
             </svg>

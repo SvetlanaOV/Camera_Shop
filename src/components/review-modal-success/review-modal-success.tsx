@@ -1,13 +1,17 @@
+import {useKeyDown} from '../../hooks/useKeyDown';
+
 type ReviewModalSuccessProps = {
   isModalSuccessOpened: boolean;
   setModalSuccessOpened: (status: boolean) => void;
 };
 
 function ReviewModalSuccess({isModalSuccessOpened, setModalSuccessOpened}: ReviewModalSuccessProps): JSX.Element {
+  useKeyDown(setModalSuccessOpened);
+
   return(
     <div className={`modal modal--narrow ${isModalSuccessOpened ? 'is-active' : ''}`}>
       <div className="modal__wrapper">
-        <div onClick={() => {setModalSuccessOpened(false); document.body.style.overflow = 'scroll';}} className="modal__overlay"></div>
+        <div onClick={() => setModalSuccessOpened(false)} className="modal__overlay"></div>
         <div className="modal__content">
           <p className="title title--h4">Спасибо за отзыв</p>
           <svg className="modal__icon" width="80" height="78" aria-hidden="true">
@@ -18,7 +22,7 @@ function ReviewModalSuccess({isModalSuccessOpened, setModalSuccessOpened}: Revie
               Вернуться к покупкам
             </button>
           </div>
-          <button onClick={() => {setModalSuccessOpened(false); document.body.style.overflow = 'scroll';}} className="cross-btn" type="button" aria-label="Закрыть попап">
+          <button onClick={() => setModalSuccessOpened(false)} className="cross-btn" type="button" aria-label="Закрыть попап">
             <svg width="10" height="10" aria-hidden="true">
               <use xlinkHref="#icon-close"></use>
             </svg>

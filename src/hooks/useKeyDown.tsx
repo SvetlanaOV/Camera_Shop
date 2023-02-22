@@ -7,7 +7,6 @@ export function useKeyDown(setModalClose: (flag: boolean) => void) {
       if (evt.key === 'Escape') {
         setModalClose(false);
       }
-      document.body.style.overflow = 'scroll';
     }
 
     document.addEventListener('keydown', handleKeyDown);

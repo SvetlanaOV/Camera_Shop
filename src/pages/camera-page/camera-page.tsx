@@ -1,5 +1,6 @@
 
 import {useEffect, useState} from 'react';
+import {RemoveScroll} from 'react-remove-scroll';
 import {useParams} from 'react-router-dom';
 import {Helmet} from 'react-helmet-async';
 import {useAppDispatch} from '../../hooks/useAppDispatch';
@@ -56,8 +57,12 @@ function CameraPage(): JSX.Element {
           </div>
           <div className="page-content__section">
             <ReviewList setModalOpened={setModalOpened}/>
-            <ReviewModal isModalOpened={isModalOpened} setModalOpened={setModalOpened} setModalSuccessOpened={setModalSuccessOpened}/>
-            <ReviewModalSuccess isModalSuccessOpened={isModalSuccessOpened} setModalSuccessOpened={setModalSuccessOpened} />
+            <RemoveScroll enabled={isModalOpened}>
+              <ReviewModal isModalOpened={isModalOpened} setModalOpened={setModalOpened} setModalSuccessOpened={setModalSuccessOpened}/>
+            </RemoveScroll>
+            <RemoveScroll enabled={isModalSuccessOpened}>
+              <ReviewModalSuccess isModalSuccessOpened={isModalSuccessOpened} setModalSuccessOpened={setModalSuccessOpened} />
+            </RemoveScroll>
           </div>
         </div >
       </main >

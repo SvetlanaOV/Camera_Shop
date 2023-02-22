@@ -20,7 +20,7 @@ function ReviewList({setModalOpened}: ReviewListProps): JSX.Element {
       <div className="container">
         <div className="page-content__headed">
           <h2 className="title title--h3">Отзывы</h2>
-          <button onClick={() => {setModalOpened(true); document.body.style.overflow = 'hidden';}} className="btn" type="button">Оставить свой отзыв</button>
+          <button onClick={() => setModalOpened(true)} className="btn" type="button">Оставить свой отзыв</button>
         </div>
         <ul className="review-block__list">
           {reviewListSlice.map((review) => (
