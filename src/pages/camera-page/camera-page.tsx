@@ -35,8 +35,6 @@ function CameraPage(): JSX.Element {
     }
   }, [id, dispatch]);
 
-  //todo: RemoveScroll сломал скролл (button-up)
-
   return (
     <div className="wrapper">
       <Helmet>
