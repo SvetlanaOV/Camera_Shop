@@ -11,28 +11,33 @@ function SimilarCardList (): JSX.Element {
   const similarCameraListSlice = similarCameraList.slice(firstSlideCounter, (firstSlideCounter + MAX_SLIDES_ON_PAGE));
 
   return (
-    <div className="product-similar__slider">
-      <div className="product-similar__slider-list">
-        {similarCameraListSlice.map((camera) => (
-          <div key={camera.id} className="product-card is-active">
-            <Card
-              key={camera.id}
-              camera={camera}
-            />
+    <section className="product-similar">
+      <div className="container">
+        <h2 className="title title--h3">Похожие товары</h2>
+        <div className="product-similar__slider">
+          <div className="product-similar__slider-list">
+            {similarCameraListSlice.map((camera) => (
+              <div key={camera.id} className="product-card is-active">
+                <Card
+                  key={camera.id}
+                  camera={camera}
+                />
+              </div>
+            ))}
           </div>
-        ))}
+          <button onClick={() => setFirstSlideCounter(firstSlideCounter - SLIDE_COUNTER_STEP)} className="slider-controls slider-controls--prev" type="button" aria-label="Предыдущий слайд" disabled={firstSlideCounter === DEFAULT_SLIDE}>
+            <svg width="7" height="12" aria-hidden="true">
+              <use xlinkHref="#icon-arrow"></use>
+            </svg>
+          </button>
+          <button onClick={() => setFirstSlideCounter(firstSlideCounter + SLIDE_COUNTER_STEP)} className="slider-controls slider-controls--next" type="button" aria-label="Следующий слайд" disabled={firstSlideCounter === (similarCameraList.length - SLIDE_COUNTER_STEP)}>
+            <svg width="7" height="12" aria-hidden="true">
+              <use xlinkHref="#icon-arrow"></use>
+            </svg>
+          </button>
+        </div>
       </div>
-      <button onClick={() => setFirstSlideCounter(firstSlideCounter - SLIDE_COUNTER_STEP)} className="slider-controls slider-controls--prev" type="button" aria-label="Предыдущий слайд" disabled={firstSlideCounter === DEFAULT_SLIDE}>
-        <svg width="7" height="12" aria-hidden="true">
-          <use xlinkHref="#icon-arrow"></use>
-        </svg>
-      </button>
-      <button onClick={() => setFirstSlideCounter(firstSlideCounter + SLIDE_COUNTER_STEP)} className="slider-controls slider-controls--next" type="button" aria-label="Следующий слайд" disabled={firstSlideCounter === (similarCameraList.length - SLIDE_COUNTER_STEP)}>
-        <svg width="7" height="12" aria-hidden="true">
-          <use xlinkHref="#icon-arrow"></use>
-        </svg>
-      </button>
-    </div>
+    </section>
   );
 }
 

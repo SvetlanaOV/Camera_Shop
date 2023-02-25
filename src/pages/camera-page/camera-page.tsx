@@ -48,12 +48,7 @@ function CameraPage(): JSX.Element {
             <CameraProduct />
           </div>
           <div className="page-content__section">
-            <section className="product-similar">
-              <div className="container">
-                <h2 className="title title--h3">Похожие товары</h2>
-                {(similarCameraList.length !== MIN_SLIDES_ON_PAGE) ? <SimilarCardList /> : ''}
-              </div>
-            </section>
+            {(similarCameraList.length !== MIN_SLIDES_ON_PAGE) ? <SimilarCardList /> : ''}
           </div>
           <div className="page-content__section">
             <ReviewList setModalOpened={setModalOpened}/>

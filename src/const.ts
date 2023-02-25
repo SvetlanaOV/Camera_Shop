@@ -2,6 +2,7 @@ export enum AppRoute {
   Root = '/',
   Catalog = '/catalog',
   Camera = '/cameras',
+  NotFound = '/404',
 }
 
 export enum APIRoute {
