@@ -130,7 +130,7 @@ function ReviewModal({isModalOpened, setModalOpened, setModalSuccessOpened}: Rev
                         <use xlinkHref="#icon-snowflake"></use>
                       </svg>
                     </span>
-                    <textarea placeholder="Поделитесь своим опытом покупки" {...register('review', {required: true, minLength: 5, pattern: /^[^\s][a-zA-Zа-яА-Я\s][^\s]*$/})} aria-invalid={errors.review ? 'true' : 'false'}></textarea>
+                    <textarea placeholder="Поделитесь своим опытом покупки" {...register('review', {required: true, minLength: 5, pattern: /^[^\s][a-zA-Zа-яА-Я\s](?!.*[-\s]{2})(.)*$/})} aria-invalid={errors.review ? 'true' : 'false'}></textarea>
                   </label>
                   <div className="custom-textarea__error">Нужно добавить комментарий</div>
                 </div>
