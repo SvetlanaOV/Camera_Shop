@@ -8,7 +8,7 @@ import {Camera} from '../../types/camera';
 const currentCamera = mockCamera();
 const cameras = mockCameras();
 
-describe('Reducer: cameras', () => {
+describe('Reducer: CamerasData', () => {
   let state: CamerasData;
 
   beforeEach(() => {

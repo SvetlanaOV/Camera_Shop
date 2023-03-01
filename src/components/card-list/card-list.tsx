@@ -1,4 +1,3 @@
-import {Fragment} from 'react';
 import Card from '../card/card';
 import {Camera} from '../../types/camera';
 
@@ -8,7 +7,7 @@ type CardListProps = {
 
 function CardList ({cameras}: CardListProps): JSX.Element {
   return (
-    <Fragment>
+    <div className="cards catalog__cards" data-testid="catalog__cards">
       {cameras.map((camera) => (
         <div key={camera.id} className="product-card">
           <Card
@@ -17,7 +16,7 @@ function CardList ({cameras}: CardListProps): JSX.Element {
           />
         </div>
       ))}
-    </Fragment>
+    </div>
   );
 }
 

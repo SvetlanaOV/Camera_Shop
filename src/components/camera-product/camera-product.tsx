@@ -9,7 +9,7 @@ function CameraProduct(): JSX.Element {
   const {previewImg, previewImg2x, previewImgWebp, previewImgWebp2x, name, rating, reviewCount, price, category} = currentCamera;
 
   return(
-    <section className="product">
+    <section className="product" data-testid='product'>
       <div className="container">
         <div className="product__img">
           <picture>

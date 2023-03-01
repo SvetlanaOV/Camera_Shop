@@ -8,7 +8,7 @@ type BreadcrumbsProps = {
 
 function Breadcrumbs({camera}: BreadcrumbsProps): JSX.Element {
   return(
-    <div className="breadcrumbs">
+    <div className="breadcrumbs" data-testid='breadcrumbs'>
       <div className="container">
         <ul className="breadcrumbs__list">
           <li className="breadcrumbs__item">
@@ -21,7 +21,7 @@ function Breadcrumbs({camera}: BreadcrumbsProps): JSX.Element {
           </li>
           <li className="breadcrumbs__item">
             {camera?.name ?
-              <Link className="breadcrumbs__link" to={AppRoute.Root}>
+              <Link className="breadcrumbs__link" to={AppRoute.Root} data-testid="bread-link">
                 Каталог
                 <svg width="5" height="8" aria-hidden="true">
                   <use xlinkHref="#icon-arrow-mini"></use>

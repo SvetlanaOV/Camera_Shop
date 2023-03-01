@@ -13,7 +13,7 @@ function Card({camera}: CardProps) {
 
   return(
     <Fragment key={id}>
-      <div className="product-card__img">
+      <div className="product-card__img" data-testid="product-card__img">
         <picture>
           <source type="image/webp" srcSet={`/${previewImgWebp}, /${previewImgWebp2x} 2x`} />
           <img src={previewImg} srcSet={`/${previewImg2x} 2x`} width="280" height="240" alt={`${category} ${name}`} />

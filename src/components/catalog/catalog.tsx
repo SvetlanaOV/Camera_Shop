@@ -25,13 +25,11 @@ function Catalog(): JSX.Element{
               <FilterForm />
             </div>
           </div>
-          <div className="catalog__content">
+          <div className="catalog__content" data-testid="catalog__content">
             <div className="catalog-sort">
               <SortForm />
             </div>
-            <div className="cards catalog__cards">
-              <CardList cameras={camerasOnPage}/>
-            </div>
+            <CardList cameras={camerasOnPage}/>
             <Pagination />
           </div>
         </div>
