@@ -5,7 +5,7 @@ import {Provider} from 'react-redux';
 import {store} from '../../store';
 import FilterForm from './filter-form';
 
-describe('Component: Breadcrumbs', () => {
+describe('Component: FilterForm', () => {
   const history = createMemoryHistory();
   it('should render correctly', () => {
     render(

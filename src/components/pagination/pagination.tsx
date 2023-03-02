@@ -15,7 +15,7 @@ function Pagination(): JSX.Element {
 
   return(
     <div className="pagination">
-      <ul className="pagination__list">
+      <ul className="pagination__list" data-testid='pagination__list'>
         <li className="pagination__item">
           <Link onClick={() => setCurrentPage(currentPage - PAGE_COUNTER_STEP)} className={currentPage === DEFAULT_PAGE ? 'visually-hidden' : 'pagination__link pagination__link--text'} to={`${AppRoute.Catalog}/${currentPage - PAGE_COUNTER_STEP}`}>Назад</Link>
         </li>

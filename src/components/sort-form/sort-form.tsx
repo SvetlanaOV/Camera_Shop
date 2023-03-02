@@ -1,7 +1,7 @@
 function SortForm(): JSX.Element {
   return(
     <form action="!#">
-      <div className="catalog-sort__inner">
+      <div className="catalog-sort__inner" data-testid='catalog-sort__inner'>
         <p className="title title--h5">Сортировать:</p>
         <div className="catalog-sort__type">
           <div className="catalog-sort__btn-text">

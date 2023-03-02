@@ -88,7 +88,7 @@ function ReviewModal({isModalOpened, setModalOpened, setModalSuccessOpened}: Rev
                       <span className="rate__all-stars">5</span>
                     </div>
                   </div>
-                  <p className="rate__message">Нужно оценить товар</p>
+                  <p className="rate__message" data-testid='rate__message'>Нужно оценить товар</p>
                 </fieldset>
                 <div className={errors.userName ? 'custom-input form-review__item is-invalid' : 'custom-input form-review__item'}>
                   <label>
