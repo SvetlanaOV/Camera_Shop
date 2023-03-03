@@ -5,7 +5,7 @@ import {store} from '../../store';
 import {createMemoryHistory } from 'history';
 import Tabs from './tabs';
 
-describe('Component: ProductTabs', () => {
+describe('Component: Tabs', () => {
   it('should render correctly', () => {
     const history = createMemoryHistory();
 
