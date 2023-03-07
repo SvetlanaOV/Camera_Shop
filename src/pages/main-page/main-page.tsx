@@ -7,14 +7,14 @@ import Footer from '../../components/footer/footer';
 
 function MainPage(): JSX.Element {
   return (
-    <div className="wrapper" data-testid='wrapper'>
+    <div className="wrapper">
       <Helmet>
         <title>Camera shoр. Каталог</title>
       </Helmet>
       <Header />
       <main>
         <Banner />
-        <div className="page-content" data-testid='page-content'>
+        <div className="page-content">
           <Breadcrumbs />
           <Catalog />
         </div >
