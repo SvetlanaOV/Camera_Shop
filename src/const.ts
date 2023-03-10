@@ -18,8 +18,8 @@ export enum NameSpace {
 }
 
 export enum TabName {
-  Features = 'Features',
-  Description = 'Description'
+  Features = 'features',
+  Description = 'description'
 }
 
 export const DEFAULT_REVIEW_RATING = 0;
@@ -67,3 +67,4 @@ export const REVIEW_COUNTER_STEP = 3;
 
 export const DEFAULT_REVIEW = 0;
 
+export const DEFAULT_TIMEOUT = 500;

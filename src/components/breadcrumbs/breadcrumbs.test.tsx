@@ -1,7 +1,7 @@
 import {render, screen} from '@testing-library/react';
 import {createMemoryHistory} from 'history';
 import {Provider} from 'react-redux';
-import HistoryRouter from '../../components/history-route/history-route';
+import HistoryRouter from '../history-router/history-router';
 import {store} from '../../store';
 import Breadcrumbs from './breadcrumbs';
 

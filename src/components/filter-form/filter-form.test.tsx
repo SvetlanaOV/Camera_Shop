@@ -1,6 +1,6 @@
 import {render, screen} from '@testing-library/react';
 import {createMemoryHistory} from 'history';
-import HistoryRouter from '../../components/history-route/history-route';
+import HistoryRouter from '../history-router/history-router';
 import {Provider} from 'react-redux';
 import {store} from '../../store';
 import FilterForm from './filter-form';

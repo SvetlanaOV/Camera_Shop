@@ -3,7 +3,7 @@ import {createMemoryHistory} from 'history';
 import {Provider} from 'react-redux';
 import {store} from '../../store';
 import mockCameras from '../../mocks/mock-cameras';
-import HistoryRouter from '../history-route/history-route';
+import HistoryRouter from '../history-router/history-router';
 import CardList from './card-list';
 
 describe('Component: CardList', () => {

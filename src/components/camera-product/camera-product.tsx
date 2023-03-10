@@ -1,12 +1,14 @@
 import {useAppSelector} from '../../hooks/useAppSelector';
 import {getCurrentCamera} from '../../store/cameras-data/selectors';
+import {getReviewList} from '../../store/reviews-data/selectors';
 import {MAX_RATING} from '../../const';
 import Tabs from '../tabs/tabs';
 
 function CameraProduct(): JSX.Element {
   const currentCamera = useAppSelector(getCurrentCamera);
+  const reviewList = useAppSelector(getReviewList);
 
-  const {previewImg, previewImg2x, previewImgWebp, previewImgWebp2x, name, rating, reviewCount, price, category} = currentCamera;
+  const {previewImg, previewImg2x, previewImgWebp, previewImgWebp2x, name, rating, price, category} = currentCamera;
 
   return(
     <section className="product" data-testid='product'>
@@ -26,7 +28,7 @@ function CameraProduct(): JSX.Element {
               </svg>
             ))}
             <p className="visually-hidden">Рейтинг: {rating}</p>
-            <p className="rate__count"><span className="visually-hidden">Всего оценок:</span>{reviewCount}</p>
+            <p className="rate__count"><span className="visually-hidden">Всего оценок:</span>{reviewList.length}</p>
           </div>
           <p className="product__price"><span className="visually-hidden">Цена:</span>{price} ₽</p>
           <button className="btn btn--purple" type="button">

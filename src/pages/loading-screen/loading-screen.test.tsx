@@ -4,9 +4,9 @@ import {Provider} from 'react-redux';
 import {store} from '../../store';
 import {createMemoryHistory} from 'history';
 import HistoryRouter from '../../components/history-router/history-router';
-import MainPage from './main-page';
+import LoadingScreen from './loading-screen';
 
-describe('Component: MainPage', () => {
+describe('Component: LoadingScreen', () => {
   it('should render correctly', () => {
     const history = createMemoryHistory();
 
@@ -14,13 +14,12 @@ describe('Component: MainPage', () => {
       <HistoryRouter history={history}>
         <Provider store={store}>
           <HelmetProvider>
-            <MainPage />
+            <LoadingScreen />
           </HelmetProvider>
         </Provider>
       </HistoryRouter>,
     );
 
-    expect(screen.getByText(/Каталог фото- и видеотехники/i)).toBeInTheDocument();
-    expect(screen.getByText(/Новинка/i)).toBeInTheDocument();
+    expect(screen.getByText(/Loading .../i)).toBeInTheDocument();
   });
 });

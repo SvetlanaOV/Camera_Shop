@@ -9,7 +9,6 @@ import {PAGE_COUNTER_STEP, MAX_CARDS_ON_PAGE} from '../../const';
 
 function Catalog(): JSX.Element{
   const cameras = useAppSelector(getCameras);
-
   const {pageId} = useParams();
 
   const firstCardIndex = MAX_CARDS_ON_PAGE * (Number(pageId) - PAGE_COUNTER_STEP);

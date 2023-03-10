@@ -11,11 +11,13 @@ import CameraProduct from '../../components/camera-product/camera-product';
 import Header from '../../components/header/header';
 import Footer from '../../components/footer/footer';
 import SimilarCardList from '../../components/similar-card-list/similar-card-list';
-import {getCurrentCamera, getSimilarCameraList} from '../../store/cameras-data/selectors';
+import NotFoundPage from '../not-found-page/not-found-page';
+import {getCamerasLoadedData, getCurrentCamera, getSimilarCameraList} from '../../store/cameras-data/selectors';
 import {fetchSimilarCameraListAction, fetchCurrentCameraAction, fetchReviewListAction} from '../../store/api-actions';
 import {MIN_SLIDES_ON_PAGE} from '../../const';
 import ReviewModal from '../../components/review-modal/review-modal';
 import ReviewModalSuccess from '../../components/review-modal-success/review-modal-success';
+import LoadingScreen from '../loading-screen/loading-screen';
 
 function CameraPage(): JSX.Element {
   const {id} = useParams();
@@ -23,6 +25,7 @@ function CameraPage(): JSX.Element {
 
   const currentCamera = useAppSelector(getCurrentCamera);
   const similarCameraList = useAppSelector(getSimilarCameraList);
+  const isCamerasDataLoading = useAppSelector(getCamerasLoadedData);
 
   const [isModalOpened, setModalOpened] = useState(false);
   const [isModalSuccessOpened, setModalSuccessOpened] = useState(false);
@@ -34,6 +37,14 @@ function CameraPage(): JSX.Element {
       dispatch(fetchReviewListAction(id));
     }
   }, [id, dispatch]);
+
+  if(isCamerasDataLoading) {
+    return <LoadingScreen/>;
+  }
+
+  if(!currentCamera.id) {
+    return <NotFoundPage/>;
+  }
 
   return (
     <div className="wrapper">

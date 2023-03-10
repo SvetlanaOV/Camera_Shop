@@ -7,7 +7,7 @@ import {ReviewPost} from '../../types/review';
 import {sendNewReviewAction} from '../../store/api-actions';
 import {getCurrentCamera} from '../../store/cameras-data/selectors';
 import {getDataLoaded} from '../../store/reviews-data/selectors';
-import {REVIEW_STAR_RATING, DEFAULT_REVIEW_RATING} from '../../const';
+import {REVIEW_STAR_RATING, DEFAULT_REVIEW_RATING, DEFAULT_TIMEOUT} from '../../const';
 
 type ReviewModalProps = {
   isModalOpened: boolean;
@@ -30,7 +30,7 @@ function ReviewModal({isModalOpened, setModalOpened, setModalSuccessOpened}: Rev
     if (isModalOpened) {
       setTimeout(() => {
         setFocus('rating');
-      }, 500);
+      }, DEFAULT_TIMEOUT);
     }
   }, [isModalOpened, setFocus]);
 
