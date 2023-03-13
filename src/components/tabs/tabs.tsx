@@ -1,15 +1,28 @@
-import {useSearchParams} from 'react-router-dom';
+import {useEffect} from 'react';
+import {useSearchParams, useNavigate, useParams} from 'react-router-dom';
 import {useAppSelector} from '../../hooks/useAppSelector';
 import {getCurrentCamera} from '../../store/cameras-data/selectors';
-import {TabName} from '../../const';
+import {APIRoute, TabName} from '../../const';
 
 function Tabs(): JSX.Element {
+  const {id} = useParams();
   const currentCamera = useAppSelector(getCurrentCamera);
 
   const {vendorCode, category, type, level, description} = currentCamera;
 
   const [searchParams, setSearchParams] = useSearchParams({tab: TabName.Description});
   const activeTab = searchParams.get('tab');
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const tabList: Array<string> = Object.values(TabName);
+    const isTabIncluded = activeTab ? tabList.includes(activeTab) : false;
+
+    if (!isTabIncluded) {
+      navigate(`${APIRoute.Cameras}/${String(id)}?tab=${TabName.Description}`);
+    }
+  }, [navigate, activeTab, id]);
 
   return (
     <div className="tabs product__tabs">
