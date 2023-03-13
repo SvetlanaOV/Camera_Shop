@@ -1,5 +1,4 @@
-import {useState} from 'react';
-import {Link} from 'react-router-dom';
+import {useSearchParams} from 'react-router-dom';
 import {useAppSelector} from '../../hooks/useAppSelector';
 import {getCurrentCamera} from '../../store/cameras-data/selectors';
 import {TabName} from '../../const';
@@ -7,15 +6,16 @@ import {TabName} from '../../const';
 function Tabs(): JSX.Element {
   const currentCamera = useAppSelector(getCurrentCamera);
 
-  const [activeTab, setActiveTab] = useState(TabName.Description);
-
   const {vendorCode, category, type, level, description} = currentCamera;
+
+  const [searchParams, setSearchParams] = useSearchParams({tab: TabName.Description});
+  const activeTab = searchParams.get('tab');
 
   return (
     <div className="tabs product__tabs">
       <div className="tabs__controls product__tabs-controls">
-        <Link className={`tabs__control ${activeTab === TabName.Features ? 'is-active' : ''}`} onClick={() => setActiveTab(TabName.Features)} to={`?tab=${TabName.Features}`}>Характеристики</Link>
-        <Link className={`tabs__control ${activeTab === TabName.Description ? 'is-active' : ''}`} onClick={() => setActiveTab(TabName.Description)} to={`?tab=${TabName.Description}`}>Описание</Link>
+        <button className={`tabs__control ${activeTab === TabName.Features ? 'is-active' : ''}`} onClick={() => setSearchParams({tab: TabName.Features})} type="button">Характеристики</button>
+        <button className={`tabs__control ${activeTab === TabName.Description ? 'is-active' : ''}`} onClick={() => setSearchParams({tab: TabName.Description})} type="button">Описание</button>
       </div>
       <div className="tabs__content">
         <div className={`tabs__element ${activeTab === TabName.Features ? 'is-active' : ''}`}>
