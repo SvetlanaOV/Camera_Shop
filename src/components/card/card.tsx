@@ -31,7 +31,7 @@ function Card({camera}: CardProps) {
           <p className="rate__count"><span className="visually-hidden">Всего оценок:</span>{reviewCount}</p>
         </div>
         <p className="product-card__title">{`${category} ${name}`}</p>
-        <div className="product-card__price"><span className="visually-hidden">Цена:</span>{price} ₽</div>
+        <p className="product-card__price"><span className="visually-hidden">Цена:</span>{price} ₽</p>
       </div>
       <div className="product-card__buttons">
         <button className="btn btn--purple product-card__btn" type="button">Купить</button>
