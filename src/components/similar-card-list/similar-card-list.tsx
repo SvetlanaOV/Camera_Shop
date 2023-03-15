@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import {useAppSelector} from '../../hooks/useAppSelector';
 import {getSimilarCameraList} from '../../store/cameras-data/selectors';
-import {DEFAULT_SLIDE, MAX_SLIDES_ON_PAGE, SLIDE_COUNTER_STEP} from '../../const';
+import {DEFAULT_SLIDE, MAX_SLIDES_ON_PAGE, SLIDE_COUNTER_STEP, SLIDE_LAST_STEP} from '../../const';
 import Card from '../card/card';
 
 function SimilarCardList (): JSX.Element {
@@ -30,7 +30,7 @@ function SimilarCardList (): JSX.Element {
               <use xlinkHref="#icon-arrow"></use>
             </svg>
           </button>
-          <button onClick={() => setFirstSlideCounter(firstSlideCounter + SLIDE_COUNTER_STEP)} className="slider-controls slider-controls--next" type="button" aria-label="Следующий слайд" disabled={firstSlideCounter === (similarCameraList.length - SLIDE_COUNTER_STEP)}>
+          <button onClick={() => setFirstSlideCounter(firstSlideCounter + SLIDE_COUNTER_STEP)} className="slider-controls slider-controls--next" type="button" aria-label="Следующий слайд" disabled={firstSlideCounter === (similarCameraList.length - SLIDE_LAST_STEP)}>
             <svg width="7" height="12" aria-hidden="true">
               <use xlinkHref="#icon-arrow"></use>
             </svg>

@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import {APIRoute} from '../../const';
 import {Camera} from '../../types/camera';
 import {MAX_RATING} from '../../const';
+import './card.css';
 
 type CardProps = {
   camera: Camera;
@@ -30,7 +31,7 @@ function Card({camera}: CardProps) {
           <p className="rate__count"><span className="visually-hidden">Всего оценок:</span>{reviewCount}</p>
         </div>
         <p className="product-card__title">{`${category} ${name}`}</p>
-        <p className="product-card__price"><span className="visually-hidden">Цена:</span>{price} ₽</p>
+        <div className="product-card__price"><span className="visually-hidden">Цена:</span>{price} ₽</div>
       </div>
       <div className="product-card__buttons">
         <button className="btn btn--purple product-card__btn" type="button">Купить</button>

@@ -19,7 +19,7 @@ export enum NameSpace {
 
 export enum TabName {
   Features = 'features',
-  Description = 'description'
+  Description = 'description',
 }
 
 export const DEFAULT_REVIEW_RATING = 0;
@@ -58,6 +58,8 @@ export const PAGE_COUNTER_STEP = 1;
 export const DEFAULT_SLIDE = 0;
 
 export const SLIDE_COUNTER_STEP = 1;
+
+export const SLIDE_LAST_STEP = 3;
 
 export const MAX_SLIDES_ON_PAGE = 3;
 
