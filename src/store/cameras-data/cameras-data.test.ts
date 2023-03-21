@@ -14,6 +14,7 @@ describe('Reducer: CamerasData', () => {
   beforeEach(() => {
     state = {
       cameras: [],
+      camerasForSearch: [],
       currentCamera: {} as Camera,
       similarCameraList: [],
       isDataLoading: false,

@@ -22,6 +22,11 @@ export enum TabName {
   Description = 'description',
 }
 
+export enum QueryParameter {
+  NameLike = 'name_like',
+  Sort = '_sort',
+}
+
 export const DEFAULT_REVIEW_RATING = 0;
 
 export const REVIEW_STAR_RATING = [
