@@ -1,6 +1,6 @@
 import {Link} from 'react-router-dom';
 import {AppRoute} from '../../const';
-import FormSearch from '../form-search/form-search';
+import SearchForm from '../search-form/search-form';
 
 function Header(): JSX.Element {
   return(
@@ -27,7 +27,7 @@ function Header(): JSX.Element {
             </li>
           </ul>
         </nav>
-        <FormSearch />
+        <SearchForm />
         <a className="header__basket-link" href="!#">
           <svg width="16" height="16" aria-hidden="true">
             <use xlinkHref="#icon-basket"></use>

@@ -25,12 +25,8 @@ export const camerasData = createSlice({
         state.cameras = action.payload;
         state.isDataLoading = false;
       })
-      .addCase(fetchCamerasForSearchAction.pending, (state) => {
-        state.isDataLoading = true;
-      })
       .addCase(fetchCamerasForSearchAction.fulfilled, (state, action) => {
         state.camerasForSearch = action.payload;
-        state.isDataLoading = false;
       })
       .addCase(fetchCurrentCameraAction.pending, (state) => {
         state.isDataLoading = true;

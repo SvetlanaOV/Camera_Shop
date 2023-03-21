@@ -6,7 +6,7 @@ import {fetchCamerasForSearchAction} from '../../store/api-actions';
 import {getCamerasForSearch} from '../../store/cameras-data/selectors';
 import {APIRoute} from '../../const';
 
-function FormSearch(): JSX.Element {
+function SearchForm(): JSX.Element {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -41,7 +41,7 @@ function FormSearch(): JSX.Element {
 
   return(
     <div className={isSearchListOpened ? 'form-search list-opened' : 'form-search'}>
-      <form>
+      <form onSubmit={(evt) => evt.preventDefault()}>
         <label>
           <svg className="form-search__icon" width="16" height="16" aria-hidden="true">
             <use xlinkHref="#icon-lens"></use>
@@ -50,7 +50,7 @@ function FormSearch(): JSX.Element {
         </label>
         <ul className="form-search__select-list">
           {cameraList.map((camera) =>
-            (<li key={`search-camera-${camera.id}`} onKeyDown={(evt) => handleEnterKeyDown(evt, camera.id)} onClick={() => redirectToCamera(camera.id)} className="form-search__select-item" tabIndex={0}>{camera.name}</li>))}
+            (<li key={`search-camera-${camera.id}`} onKeyDown={(evt) => handleEnterKeyDown(evt, camera.id)} onClick={() => redirectToCamera(camera.id)} className="form-search__select-item">{camera.name}</li>))}
         </ul>
       </form>
       <button onClick={() => setCameraName('')} className="form-search__reset" type="reset">
@@ -63,4 +63,4 @@ function FormSearch(): JSX.Element {
   );
 }
 
-export default FormSearch;
+export default SearchForm;
