@@ -2,6 +2,7 @@ import {store} from '../store/index';
 import {Camera} from './camera';
 import {Promo} from './promo';
 import {Review} from './review';
+import {SortType, SortOrder} from '../const';
 
 export type CamerasData = {
   cameras: Camera[];
@@ -19,6 +20,11 @@ export type PromoData = {
 export type ReviewsData = {
   reviews: Review[];
   isDataLoading: boolean;
+};
+
+export type ActionProcess = {
+  sortType: SortType;
+  sortOrder: SortOrder;
 };
 
 export type State = ReturnType<typeof store.getState>;

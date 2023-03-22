@@ -6,14 +6,19 @@ import {Promo} from '../types/promo';
 import {Review, ReviewPost} from '../types/review';
 import {AppDispatch, State} from '../types/state';
 
-export const fetchCamerasAction = createAsyncThunk<Camera[], undefined, {
+export const fetchCamerasAction = createAsyncThunk<Camera[], {paramsSort: {_sort: string; _order: string} }, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
 }>(
   'data/fetchCameras',
-  async (_arg, {dispatch, extra: api}) => {
-    const {data} = await api.get<Camera[]>(APIRoute.Cameras);
+  async ({paramsSort}, {extra: api}) => {
+    const {data} = await api.get<Camera[]>(APIRoute.Cameras, {
+      params: {
+        [QueryParameter.Sort]: paramsSort._sort,
+        [QueryParameter.Order]: paramsSort._order,
+      }});
+
     return data;
   }
 );

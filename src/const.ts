@@ -15,6 +15,7 @@ export enum NameSpace {
   CamerasData = 'CamerasData',
   PromoData = 'PromoData',
   ReviewsData = 'ReviewsData',
+  Action = 'Action',
 }
 
 export enum TabName {
@@ -25,6 +26,18 @@ export enum TabName {
 export enum QueryParameter {
   NameLike = 'name_like',
   Sort = '_sort',
+  Order = '_order',
+}
+
+export enum SortType {
+  Default = 'default',
+  Rating = 'rating',
+  Price = 'price',
+}
+
+export enum SortOrder {
+  Ascending ='ascending',
+  Descending = 'descending'
 }
 
 export const DEFAULT_REVIEW_RATING = 0;
